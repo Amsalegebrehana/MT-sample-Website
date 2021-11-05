@@ -24,7 +24,7 @@ app.use("/api/user",userPost);
 
 
 // connect to db
-mongoose.connect(process.env.DB_CONNECTION_URL,console.log("db is connected"))
+mongoose.connect(process.env.DB_CONNECTION_URL,console.log("DB is connected...."))
 
 
 
