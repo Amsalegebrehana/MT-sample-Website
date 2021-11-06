@@ -1,21 +1,26 @@
 const express = require('express');
-const { createNewUser,getAllUsers,getUserByID,deleteUserAccount,updateUserProfile,loginUser} = require('../controllers/userController');
-const router = express.Router();
-const verify = require('../utility/verifytoken');
+const {logoutUser, createNewUser,getAllUsers,getUserByID,deleteUserAccount,updateUserProfile,loginUser} = require('../controllers/userController');
+const{ auth} = require('../utility/verifytoken');
 
-// get all users
-router.get('/',verify, getAllUsers);
-//get user by id
-router.get('/:userId',verify,getUserByID);
+
+const router = express.Router();
+
 //send new talent/user request to the server
 router.post('/register', createNewUser);
-
+// user login using email and password
 router.post('/login', loginUser);
 
+router.get('/logout', logoutUser);
+
+
+// get all users
+router.get('/',auth, getAllUsers);
+//get user by id
+router.get('/:userId',auth,getUserByID);
 // delete user by id
-router.delete('/:userId',verify,deleteUserAccount);
+router.delete('/:userId',auth,deleteUserAccount);
 // update user by id
-router.put('/:userId',verify,updateUserProfile);
+router.put('/:userId',auth,updateUserProfile);
 
 
 module.exports = router;
