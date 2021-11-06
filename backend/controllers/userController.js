@@ -6,6 +6,9 @@ const {
 	validateUserAccount,
 	validateLoginUser,
 } = require("../validation/userValidation");
+const createToken = require("../utility/createToken");
+
+const maxAge = 3 * 24 * 60 * 60;
 
 // create a new user or talent
 async function createNewUser(req, res) {
@@ -35,13 +38,17 @@ async function createNewUser(req, res) {
       "category",
     ])
   );
-  
-  try {
-    user.password = hashPassword;
-		 await user.save();
-		res.status(200).send({ user: user._id });
+	try {
+
+	  user.password = hashPassword;
+	  const token = createToken(user._id);
+	  res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+	  await user.save();
+
+		res.status(200).json({ user: user._id });
+		// res.status(200).send({ user: user._id });
 	} catch (error) {
-		res.status(400).json(error);
+		res.status(400).json({ error: error.message});
 	}
 }
 //
@@ -56,24 +63,21 @@ async function loginUser(req, res) {
 	const pass = await bcrypt.compare(req.body.password, user.password);
 	if (!pass) return res.status(400).send("Password is not correct!");
 
-	// create token
-	const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-
-	res.header("auth-token", token).send(token);
+    const token = createToken(user._id);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.status(200).json({ user: user._id });
 
 	// res.send("Login")
 }
 
 
-function test() {
-  
-  const boj = [{ "name": "John", "email": "bb" },{ "name": "John", "email": "vv" }]
-  // console.log(_.omit(boj, "boj.name"));
-  console.log(_.map(boj, function (obj) {
-    return _.omit(obj, 'name');
-  }));
+// logout 
+function logoutUser(req, res) {
+	res.cookie('jwt', '', { maxAge: 1 });
+	res.send("logout");
 }
-test();
+
+
 // get all user list
 async function getAllUsers(req, res) {
 	try {
@@ -144,3 +148,4 @@ module.exports.getUserByID = getUserByID;
 module.exports.updateUserProfile = updateUserProfile;
 module.exports.loginUser = loginUser;
 module.exports.deleteUserAccount = deleteUserAccount;
+module.exports.logoutUser = logoutUser;

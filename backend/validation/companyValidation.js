@@ -20,7 +20,11 @@ function validateCompanyAccount(data) {
 function validateLoginCompany(data) {
 	const schema = Joi.object({
 		email: Joi.string().required().email(),
-		password: string().min(6).required(),
+		password: Joi.string()
+		.min(6)
+			  .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+			.required(),
+	
 	});
 
 	return schema.validate(data);
