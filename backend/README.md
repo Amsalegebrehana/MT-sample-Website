@@ -27,7 +27,7 @@ http://localhost:5000/api
 +GET logout user
 /user/logout
 
-+ PUT update user profileImg 
+! PUT update user profileImg 
 /user:userID 
 
 - DELETE user by id
@@ -49,11 +49,28 @@ http://localhost:5000/api
 +GET logout company
 /company/logout
 
-+ PUT update company profileImg 
+! PUT update company profileImg 
 /company:companyID 
 
 - DELETE company by id
 /company:companyID 
 
 ```
- 
+ ### job endpoint
+```diff
++ POST post new job 
+/job/post
+
++ GET all posted jobs 
+/job/all
+
++ GET job by posted company 
+/job:postBy 
+
+! PUT update posted job
+/job:jobID 
+
+- DELETE delete posted jobs 
+/job:jobID
+
+``` 
