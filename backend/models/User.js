@@ -1,8 +1,35 @@
 const { string } = require("joi");
 const mongoose = require("mongoose");
 
-const skillSchema = mongoose.Schema({
-	skillName: {
+const UserSchema = mongoose.Schema({
+	firstName: {
+		type: String,
+		required: true,
+		minLength: 3,
+	},
+	lastName: {
+		type: String,
+		required: true,
+		minLength: 3,
+	},
+	gender: {
+		type: String,
+		required: true,
+		enum: [
+			"female",
+			"male",
+		]
+	},
+	email: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	password: { type: String, required: true, minLength: 6 },
+	profileImg: { type: String },
+	bio: { type: String },
+	address: { type: String },
+	skill: {
 		type: [String],
 		required: true,
 		enum: [
@@ -22,28 +49,6 @@ const skillSchema = mongoose.Schema({
 		required: true,
 		enum: ["beginner", "intermediate", "professional"],
 	},
-});
-const UserSchema = mongoose.Schema({
-	firstName: {
-		type: String,
-		required: true,
-		minLength: 3,
-	},
-	lastName: {
-		type: String,
-		required: true,
-		minLength: 3,
-	},
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-	},
-	password: { type: String, required: true, minLength: 6 },
-	profileImg: { type: String },
-	bio: { type: String },
-	address: { type: String },
-	skill: { type: skillSchema, required: true },
 	category: {
 		type: String,
 		enum: [

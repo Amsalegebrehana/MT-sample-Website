@@ -53,7 +53,7 @@ http://localhost:5000/api
 /company:companyID 
 
 - DELETE company by id
-/company:userID 
+/company:companyID 
 
 ```
  
