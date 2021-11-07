@@ -2,7 +2,7 @@ import React from 'react'
 import {Card ,ListGroup,Badge} from 'react-bootstrap';
 function Cards({ data }) {
 
-    console.log(newDate);
+    
     return (
         <Card style={{ width: '48rem' }}>
         <Card.Body>

@@ -13,7 +13,6 @@ class Register extends Component {
             gender:'',
             category:'',
             errors:{}
-
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -104,10 +103,10 @@ class Register extends Component {
                             <div className="form-group">
                             <input type="password" className="form-control form-control-lg" placeholder="Confirm Password" name="password2" />
                             </div>
-                            <div  onChange={this.onChange}>
+                            <div className="container-m" onChange={this.onChange}>
                                     <input type="radio" value="male"  name="gender"/> Male
                                     <input type="radio" value="female"  name="gender"/> Female
-                                </div>
+                             </div>
                             <div className="form-group">
                             <div className="row px-3"> 
                             <input  className="form-control form-control-lg"

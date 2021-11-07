@@ -8,6 +8,7 @@ import Register from "./component/auth/register";
 import Login from "./component/auth/login";
 import About from "./component/layout/About";
 import RegisterAsCompany from "./component/auth/registerascompany";
+import CompanyHome from "./pages/companyHome";
 
 class App extends Component{
     render(){
@@ -17,6 +18,7 @@ class App extends Component{
                 
                 <Navbar/>
                 <Routes>
+                    
                 <Route exact path='/' element = {<Landing/>}/>
               
                    
@@ -26,14 +28,14 @@ class App extends Component{
                     <Routes>
                     <Route exact path='/register' element = {<Register/>}/>
                     <Route exact path='/registercompany' element = {<RegisterAsCompany/>}/>
-                    <Route exact path='/login' element = {<Login/>}/>
-
-                    </Routes>
-                   
-
+                    <Route exact path='/login' element={<Login />} />
+                            <Route exact path='/company' element={<CompanyHome />} />
+                            
+                   <Route exact path='/' element={<About />} />
+                   </Routes>
                 </div>
               
-               <About/>
+            
                 <Footer/>
             </div>
             </Router>
