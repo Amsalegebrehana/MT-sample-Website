@@ -1,6 +1,6 @@
 const express = require('express');
-const {logoutUser, createNewUser,getAllUsers,getUserByID,deleteUserAccount,updateUserProfile,loginUser} = require('../controllers/userController');
-const{auth} = require('../utility/verifytoken');
+const {createNewUser,getAllUsers,getUserByID,deleteUserAccount,updateUserProfile,loginUser} = require('../controllers/userController');
+const{auth,logout} = require('../utility/verifytoken');
 const multer  = require('multer')
 
 const storage = multer.diskStorage({
@@ -23,7 +23,7 @@ router.post('/register',upload.single('profileImg'), createNewUser);
 // user login using email and password
 router.post('/login', loginUser);
 
-router.get('/logout', logoutUser);
+router.get('/logout', logout);
 
 
 // get all users
