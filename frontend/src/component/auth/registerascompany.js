@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import classnames from 'classnames';
-class Register extends Component {
+class RegisterAsCompany extends Component {
     constructor(){
         super();
         this.state = {
             fname :'',
-            lname:'',
+            
             email:'',
             password:'',
             address:'',
-            gender:'',
+         
             category:'',
             errors:{}
 
@@ -24,10 +24,9 @@ class Register extends Component {
     onSubmit(e){
         e.preventDefault();
         const newUser = {
-            firstName:this.state.fname,
+            businessName:this.state.fname,
             lastName:this.state.lname,
-            gender:this.state.gender,
-           
+            
             email:this.state.email,
             password:this.state.password,
             address:this.state.address,
@@ -37,7 +36,7 @@ class Register extends Component {
 
         }
         console.log(newUser);
-        axios.post('http://localhost:5000/api/user/register', newUser)
+        axios.post('http://localhost:5000/api/company/register', newUser)
         .then(res => console.log(res.data))
         .catch(err =>console.log(err.response.data))
     }
@@ -81,10 +80,7 @@ class Register extends Component {
                             type="text" name="fname" 
                             value={this.state.fname}
                             onChange={this.onChange}/> </div>
-                        <div className="col-md-6"> 
-                            <input type="text" name="lname" className="form-control form-control-lg" placeholder="Last name"
-                            value={this.state.lname}
-                            onChange={this.onChange}/> </div>
+                        
                     </div>
                             
                             <div class="form-group">
@@ -104,10 +100,7 @@ class Register extends Component {
                             <div className="form-group">
                             <input type="password" className="form-control form-control-lg" placeholder="Confirm Password" name="password2" />
                             </div>
-                            <div  onChange={this.onChange}>
-                                    <input type="radio" value="male"  name="gender"/> Male
-                                    <input type="radio" value="female"  name="gender"/> Female
-                                </div>
+                            
                             <div className="form-group">
                             <div className="row px-3"> 
                             <input  className="form-control form-control-lg"
@@ -143,4 +136,4 @@ class Register extends Component {
     }
 }
 
-export default  Register;
+export default  RegisterAsCompany;

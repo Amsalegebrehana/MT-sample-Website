@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
 	},
 	gender: {
 		type: String,
-		required: true,
+		// required: true,
 		enum: [
 			"female",
 			"male",
@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema({
 	address: { type: String },
 	skill: {
 		type: [String],
-		required: true,
+		// required: true,
 		enum: [
 			"React",
 			"Flutter",
@@ -45,7 +45,7 @@ const UserSchema = mongoose.Schema({
 	},
 	skillLevel: {
 		type: String,
-		required: true,
+		// required: true,
 		enum: ["beginner", "intermediate", "professional"],
 	},
 	category: {
@@ -57,7 +57,7 @@ const UserSchema = mongoose.Schema({
 			"Full-stack Developer",
 			"IOS App Developer",
 		],
-		required: true,
+		// required: true,
 	},
 
 	CreateAt: { type: Date, default: Date.now },

@@ -7,6 +7,7 @@ import Landing from "./component/layout/Landing";
 import Register from "./component/auth/register";
 import Login from "./component/auth/login";
 import About from "./component/layout/About";
+import RegisterAsCompany from "./component/auth/registerascompany";
 
 class App extends Component{
     render(){
@@ -24,6 +25,7 @@ class App extends Component{
                 <div className="container">
                     <Routes>
                     <Route exact path='/register' element = {<Register/>}/>
+                    <Route exact path='/registercompany' element = {<RegisterAsCompany/>}/>
                     <Route exact path='/login' element = {<Login/>}/>
 
                     </Routes>
