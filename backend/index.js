@@ -15,6 +15,7 @@ const app = express();
 // cors middleware 
 app.use(cors());
 app.use(cookieParser());
+app.use('/public/upload',express.static('public/upload'))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false })) 
 // parse application/json
