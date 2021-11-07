@@ -1,6 +1,6 @@
 const express = require('express');
-const {logoutCompany,loginCompany, createNewCompany,getAllCompany,getCompanyByID,deleteCompanyAccount,updateCompanyProfile} = require('../controllers/companyController');
-const {auth} = require('../utility/verifytoken');
+const {loginCompany, createNewCompany,getAllCompany,getCompanyByID,deleteCompanyAccount,updateCompanyProfile} = require('../controllers/companyController');
+const {auth,logout} = require('../utility/verifytoken');
 
 const multer  = require('multer')
 
@@ -25,7 +25,7 @@ router.post('/register',upload.single('logo'), createNewCompany);
 router.post('/login', loginCompany);
 
 // logout 
-router.get('/logout', logoutCompany);
+router.get('/logout', logout);
 
 
 // get all Company

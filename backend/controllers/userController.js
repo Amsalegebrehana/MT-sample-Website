@@ -68,11 +68,7 @@ async function loginUser(req, res) {
 	res.status(200).json({ user: user._id });
 
 }
-// logout
-function logoutUser(req, res) {
-	res.cookie("jwt", "", { maxAge: 1 });
-	res.send("logout");
-}
+
 // get all user list
 async function getAllUsers(req, res) {
 	try {
@@ -98,14 +94,25 @@ async function getUserByID(req, res) {
 }
 // update user profile
 async function updateUserProfile(req, res) {
-	console.log(req.file);
+
 	try {
 		const updateUser = await User.updateOne(
 			{ _id: req.params.userId },
 			{
+				$set:_.pick(req.body, [
+					"firstName",
+					"lastName",
+					"gender",
+					"password",
+					"bio",
+					"address",
+					"skill",
+					"skillLevel",
+					"category",
+				]),
 				$set: {
-					profileImg: req.file.path,
-				},
+					profileImg:req.file.path
+				}
 			}
 		);
 
@@ -147,4 +154,3 @@ module.exports.getUserByID = getUserByID;
 module.exports.updateUserProfile = updateUserProfile;
 module.exports.loginUser = loginUser;
 module.exports.deleteUserAccount = deleteUserAccount;
-module.exports.logoutUser = logoutUser;

@@ -16,5 +16,13 @@ const auth = (req, res, next) => {
     } catch (error) {
         res.status(400).send("Invalid Token!");
     }
-  };
+};
+  
+
+// logout
+function logoutUser(req, res) {
+	res.cookie("jwt", "", { maxAge: 1 });
+	res.send("logout");
+}
 module.exports.auth = auth;
+module.exports.logout = logoutUser;

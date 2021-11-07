@@ -7,7 +7,7 @@ require('dotenv/config');
  
 const userRoute = require('./routes/user');
 const companyRoute = require('./routes/company');
-
+const jobPost = require('./routes/job');
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 // user Middleware
 app.use("/api/user", userRoute);
 app.use("/api/company",companyRoute);
-
+app.use("/api/job",jobPost);
 
 
 // connect to db

@@ -117,11 +117,6 @@ async function loginCompany(req, res) {
 	// res.send("Login")
 }
 
-function logoutCompany(req, res) {
-	res.cookie('jwt', '', { maxAge: 1 });
-	res.send("logout");
-}
-
 
 
 //delete company accounts
@@ -139,5 +134,4 @@ module.exports.getAllCompany = getAllCompany;
 module.exports.getCompanyByID = getCompanyByID;
 module.exports.updateCompanyProfile = updateCompanyProfile;
 module.exports.loginCompany = loginCompany;
-module.exports.logoutCompany = logoutCompany;
 module.exports.deleteCompanyAccount = deleteCompanyAccount;
