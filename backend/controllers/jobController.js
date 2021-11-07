@@ -14,6 +14,9 @@ async function postJob(req, res) {
             "description",
             "jobType",
             "category",
+            "salary",
+            "companyName",
+            "jobEndDate"
         ])
     );
     try {
@@ -57,6 +60,9 @@ async function updateJob(req, res) {
                     "description",
                     "jobType",
                     "category",
+                    "salary",
+                    "jobEndDate",
+                    "companyName"
                 ]),
 			}
 		);

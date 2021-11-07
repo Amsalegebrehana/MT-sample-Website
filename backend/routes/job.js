@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/post',postJob);
 
-router.get('/',getJob);
+router.get('/all',getJob);
 
 router.get('/:postBy',getJobByID);
 

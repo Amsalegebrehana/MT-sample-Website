@@ -6,6 +6,9 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    companyName: {
+        type: String,
+    },
     jobTitle: {
         type: String,
         required: true,
@@ -23,10 +26,26 @@ const jobSchema = mongoose.Schema({
         required: true,
         enum: ["full-time","part-time","contract"],
     },
-    category: {
+    salary: {
         type: String,
         required: true,
     },
+    jobEndDate: {
+        type: Date,
+        required: true,
+    },
+    category: {
+		type: String,
+        enum: [
+            "Web Developer",
+			"React Developer",
+			"Flutter Developer",
+			"Android Developer",
+			"Full-stack Developer",
+			"IOS App Developer",
+		],
+		required: true,
+	},
     CreateAt: { type: Date, default: Date.now },
 
     
