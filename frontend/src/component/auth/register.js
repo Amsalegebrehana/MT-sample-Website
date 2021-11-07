@@ -9,6 +9,7 @@ class Register extends Component {
             email:'',
             password:'',
             address:'',
+            gender:'',
             category:'',
             errors:{}
 
@@ -24,16 +25,21 @@ class Register extends Component {
         const newUser = {
             fname:this.state.fname,
             lname:this.state.lname,
+            gender:this.state.gender,
+            bio:this.state.bio,
+            skill:this.state,
             email:this.state.email,
             password:this.state.password,
             address:this.state.address,
-            category:this.state.category
+            category:this.state.category,
+            skillLevel:this.state.skillLevel,
+
 
         }
         // console.log(newUser);
-        axios.post('/api/user/register', newUser)
+        axios.post('http://localhost:5000/api/user/register', newUser)
         .then(res => console.log(res.data))
-        .catch(err =>console.log(err))
+        .catch(err =>console.log(err.response.data))
     }
     render() {
         return (
@@ -95,10 +101,14 @@ class Register extends Component {
                             value={this.state.password}
                             onChange={this.onChange}/>
                             </div>
-                            <div class="form-group">
+                            <div className="form-group">
                             <input type="password" className="form-control form-control-lg" placeholder="Confirm Password" name="password2" />
                             </div>
-                            <div class="form-group">
+                            <div className="form-group" onChange={this.onChange}>
+                                    <input type="radio" value={this.state.gender}  name="gender"/> Male
+                                    <input type="radio" value={this.state.gender}  name="gender"/> Female
+                                </div>
+                            <div className="form-group">
                             <div className="row px-3"> 
                             <input  className="form-control form-control-lg"
                                 type="text" name="address"  placeholder="Address"
@@ -113,7 +123,25 @@ class Register extends Component {
                          onChange={this.onChange}/> 
                         </div>
                             </div>
-                            
+                         
+                            <div className="radio">
+                                <label>
+                                    <input type="radio" value="option1" checked={true} />
+                                    Option 1
+                                </label>
+                                </div>
+                                <div className="radio">
+                                <label>
+                                    <input type="radio" value="option2" />
+                                    Option 2
+                                </label>
+                                </div>
+                                <div className="radio">
+                                <label>
+                                    <input type="radio" value="option3" />
+                                    Option 3
+                                </label>
+                                </div>
                             <div className="row px-3 form-group"> 
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                             <option selected>choose Category select menu</option>
@@ -122,7 +150,10 @@ class Register extends Component {
                             <option value="3">Three</option>
                             </select>
                          </div>
+                         
+
                             <input type="submit" class="btn btn-info btn-block mt-4" />
+
                         </form>
                     
                      
